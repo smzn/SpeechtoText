@@ -20,6 +20,8 @@ public class SpeechtoText_main {
 	    
 	    File audio = new File("audio/sample03.wav");
 	    RecognizeOptions options = null;
+	    MySQL mysql = new MySQL();
+	    
 		try {
 			options = new RecognizeOptions.Builder()
 					.model("ja-JP_BroadbandModel")
@@ -43,6 +45,7 @@ public class SpeechtoText_main {
 					System.out.println("transcript : " + text);
 					double confidence = node.get("results").get(i).get("alternatives").get(0).get("confidence").asDouble();
 					System.out.println("confidence : " + confidence);
+					mysql.updateImage(text, confidence);
 				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
