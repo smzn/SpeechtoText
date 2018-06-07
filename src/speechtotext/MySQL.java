@@ -14,14 +14,16 @@ public class MySQL {
     Connection con;
     Statement stmt;
     Map<String, Object> lng = new HashMap<>();
+    private String id;
     
 	public MySQL() {
 		this.driver = "org.gjt.mm.mysql.Driver";
-        this.server = "ms000.sist.ac.jp";
-        this.dbname = "ms000";
+        this.server = "sangi2018.sist.ac.jp";
+        this.dbname = "sangi2018";
         this.url = "jdbc:mysql://" + server + "/" + dbname + "?useUnicode=true&characterEncoding=UTF-8";
-        this.user = "ms000";
+        this.user = "sangi2018";
         this.password = "naisyo";
+        this.id = "J16000";
         try {
             this.con = DriverManager.getConnection(url, user, password);
             this.stmt = con.createStatement ();
@@ -51,7 +53,8 @@ public class MySQL {
 	public void updateImage(String transcript, double confidence) {
 		//keywordテーブルへ格納
 		StringBuffer buf = new StringBuffer();
-		buf.append("INSERT INTO  `speeches` (`transcript` ,`confidence`) VALUES (" + transcript + ", "+ confidence +"  );");
+		buf.append("INSERT INTO  `speeches` (`user_id`,`transcript` ,`confidence`) VALUES ( 'J16000', " + transcript + ", "+ confidence +"  );");
+		//buf.append("INSERT INTO  `speeches` (`user_id`,`transcript` ,`confidence`) VALUES ( " + this.id + ", " + transcript + ", "+ confidence +"  );");
 		String sql = buf.toString();
 		try {
 			stmt.execute (sql);

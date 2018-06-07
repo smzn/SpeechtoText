@@ -18,8 +18,9 @@ public class SpeechtoText_main {
 		SpeechToText service = new SpeechToText();
 	    service.setUsernameAndPassword("naisyo", "naisyo");
 	    
-	    File audio = new File("audio/sample03.wav");
+	    File audio = new File("audio/sample1.wav");
 	    RecognizeOptions options = null;
+
 	    MySQL mysql = new MySQL();
 	    
 		try {
